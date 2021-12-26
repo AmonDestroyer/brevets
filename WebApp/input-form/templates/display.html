@@ -1,0 +1,32 @@
+<html>
+<head>
+  <title>Opening and Closing Times</title>
+</head>
+  <body>
+    {% if info.total_brevets != 0 %}
+      {% for brevet in brevets %}
+      <h1> {{ brevet.distance }}km APC Brevet </h1>
+      <h3> Start Date: {{ brevet.begin_date }}</h3>
+      <h3> Stard Time: {{ brevet.begin_time }}</h3>
+      <table class="brevet_table">
+      <th>Control (km)</th>
+      <th>Control (km)</th>
+      <th>Location</th>
+      <th>Open Time</th>
+      <th>Close Time</th>
+        {% for controle in brevet.controls %}
+          <tr class="control">
+            <td> {{ controle.km }}km</td>
+            <td> {{ controle.mi }} </td>
+            <td> {{ controle.location }} </td>
+            <td> {{ controle.open }} </td>
+            <td> {{ controle.close }} </td>
+          </tr>
+        {% endfor %}
+      </table>
+      {% endfor %}
+    {% else %}
+      <h1> No items were submitted </h1>
+    {% endif %}
+  </body>
+</html>

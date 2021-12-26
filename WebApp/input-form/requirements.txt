@@ -1,0 +1,5 @@
+arrow==1.2.1
+pep8==1.7.1
+autopep8==1.6.0
+flask==2.0.2
+pymongo==4.0

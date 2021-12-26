@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  api-service:
+    build: ./api
+    volumes:
+      - ./api:/usr/src/app
+    ports:
+      - 6568:80  # host:container
+    links:
+      - db
+
+  website:
+    image: php:apache
+    volumes:
+      - ./website:/var/www/html
+    ports:
+      - 6569:80  # host:container
+    depends_on:
+      - api-service  # website is not going to work unless api-service is running
+
+  input-form:
+    build: ./input-form
+    ports:
+      - 6567:5000
+    volumes:
+      - ./input-form:/app
+    links:
+      - db
+
+  db:
+    image: mongo:3.6
